@@ -77,7 +77,7 @@
         "Bruno",
         "Eder",
         "Nicolas",
-        // "Pedro",
+        "Pedro",
         "Thiago",
         "Vitor",
     ];
@@ -91,7 +91,7 @@
     var shuffledSquad = ref([]);
 
     function shuffleSquad(squad) {
-        this.shuffledSquad = shuffle(squad);
+        shuffledSquad.value = shuffle(squad);
     }
 </script>
 
