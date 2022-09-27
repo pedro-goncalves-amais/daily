@@ -1,4 +1,6 @@
 <script setup>
+    import { computed } from "vue";
+
     const props = defineProps({
         name: {
             type: String,
@@ -17,18 +19,16 @@
 
 <template>
     <div class="person">
-        <div class="avatar">
-            <div class="w-24 rounded-xl">
-                <img :src="image" />
+        <div
+            :class="['tooltip', { 'tooltip-open': showName }]"
+            :data-tip="name"
+        >
+            <div class="avatar shadow">
+                <div class="w-32 rounded-xl">
+                    <img :src="image" />
+                </div>
             </div>
         </div>
-
-        <p
-            class="name"
-            v-show="showName"
-        >
-            {{ name }}
-        </p>
     </div>
 </template>
 
