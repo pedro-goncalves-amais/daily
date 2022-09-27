@@ -12,25 +12,25 @@
         return squad[randomNumber];
     }
 
-    function shuffle([...array]) {
-        let currentIndex = array.length;
-        let randomIndex;
+    // function shuffle([...array]) {
+    //     let currentIndex = array.length;
+    //     let randomIndex;
 
-        while (currentIndex != 0) {
-            // Picks a remaining element.
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex--;
+    //     while (currentIndex != 0) {
+    //         // Picks a remaining element.
+    //         randomIndex = Math.floor(Math.random() * currentIndex);
+    //         currentIndex--;
 
-            // Swaps it with the current element.
-            [array[currentIndex], array[randomIndex]] = [
-                array[randomIndex],
-                array[currentIndex],
-            ];
-        }
+    //         // Swaps it with the current element.
+    //         [array[currentIndex], array[randomIndex]] = [
+    //             array[randomIndex],
+    //             array[currentIndex],
+    //         ];
+    //     }
 
-        // Returns the new list
-        return array;
-    }
+    //     // Returns the new list
+    //     return array;
+    // }
 
     function daily(squad = [], conductorSelector, memberRandomizer) {
         // Selects a member to be the daily conductor
@@ -72,33 +72,46 @@
         )}.`;
     }
 
-    const squad = [
-        "Anderson",
-        "Bruno",
-        "Eder",
-        "Nicolas",
-        "Pedro",
-        "Thiago",
-        "Vitor",
-    ];
+    const squad = ref([
+        {
+            name: "Anderson Alfarth",
+            image: "https://placeimg.com/192/192/people",
+        },
+        {
+            name: "Bruno Rovela",
+            image: "https://placeimg.com/192/192/people",
+        },
+        {
+            name: "Eder Soares",
+            image: "https://placeimg.com/192/192/people",
+        },
+        {
+            name: "Nicolas Gross",
+            image: "https://placeimg.com/192/192/people",
+        },
+        {
+            name: "Pedro Gonçalves",
+            image: "https://placeimg.com/192/192/people",
+        },
+        {
+            name: "Thiago Tinoco",
+            image: "https://placeimg.com/192/192/people",
+        },
+        {
+            name: "Vitor Duggen",
+            image: "https://placeimg.com/192/192/people",
+        },
+    ]);
 
-    const { conductor, members } = daily(squad, getRandomSquadMember, shuffle);
-
-    const conductorMessage = getConductorsMessage(conductor);
-
-    const membersMessage = ref(getMembersMessage(members));
-
-    var shuffledSquad = ref([]);
-
-    function shuffleSquad(squad) {
-        shuffledSquad.value = shuffle(squad);
+    function shuffleSquad() {
+        squad.value = useShuffle(squad.value);
     }
 </script>
 
 <template>
     <div class="container mx-auto">
         <div class="h-screen flex flex-col items-center justify-center gap-16">
-            <ul>
+            <!-- <ul>
                 <li
                     class="text-center text-2xl"
                     v-for="(member, key) in shuffledSquad"
@@ -106,11 +119,24 @@
                 >
                     {{ member }}
                 </li>
-            </ul>
+            </ul> -->
+
+            <TransitionGroup
+                tag="ul"
+                name="person"
+                class="my-grid"
+            >
+                <person
+                    v-for="(member, key) in squad"
+                    :key="member.name"
+                    :image="member.image"
+                    :name="member.name"
+                />
+            </TransitionGroup>
 
             <button
                 class="btn"
-                @click="shuffleSquad(squad)"
+                @click="shuffleSquad"
             >
                 Randomizar
             </button>
@@ -118,4 +144,27 @@
     </div>
 </template>
 
-<style lang="postcss" scoped></style>
+<style lang="postcss">
+    .my-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 24px;
+        position: relative;
+    }
+
+    .person-move,
+    .person-enter-active,
+    .person-leave-active {
+        transition: all 0.5s ease;
+    }
+
+    .person-enter-from,
+    .person-leave-to {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    .person-leave-active {
+        position: absolute;
+    }
+</style>
