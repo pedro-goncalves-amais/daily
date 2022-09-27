@@ -1,5 +1,4 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-    modules: ["@nuxtjs/tailwindcss", "nuxt-lodash"],
+    modules: ["@nuxtjs/tailwindcss", "nuxt-lodash", "@nuxtjs/supabase"],
 });
-

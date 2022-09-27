@@ -8,6 +8,10 @@
             type: String,
             default: "",
         },
+        showName: {
+            type: Boolean,
+            default: true,
+        },
     });
 </script>
 
@@ -19,7 +23,12 @@
             </div>
         </div>
 
-        <p class="name">{{ name }}</p>
+        <p
+            class="name"
+            v-show="showName"
+        >
+            {{ name }}
+        </p>
     </div>
 </template>
 

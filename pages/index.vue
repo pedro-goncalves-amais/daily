@@ -75,52 +75,53 @@
     const squad = ref([
         {
             name: "Anderson Alfarth",
-            image: "https://placeimg.com/192/192/people",
+            image: "https://plataformaamais.atlassian.net/wiki/aa-avatar/61714e83892c420072113a16   ",
         },
         {
             name: "Bruno Rovela",
-            image: "https://placeimg.com/192/192/people",
+            image: "https://plataformaamais.atlassian.net/wiki/aa-avatar/5c06d6f510c30e4ac8c8d0fe",
         },
         {
             name: "Eder Soares",
-            image: "https://placeimg.com/192/192/people",
+            image: "https://plataformaamais.atlassian.net/wiki/aa-avatar/628f7ddc1a437e00704370f1",
         },
         {
             name: "Nicolas Gross",
-            image: "https://placeimg.com/192/192/people",
+            image: "https://plataformaamais.atlassian.net/wiki/aa-avatar/620a81c9eb29780068909ded",
         },
         {
             name: "Pedro Gonçalves",
-            image: "https://placeimg.com/192/192/people",
+            image: "https://plataformaamais.atlassian.net/wiki/aa-avatar/614224581238e8007133d470",
         },
         {
             name: "Thiago Tinoco",
-            image: "https://placeimg.com/192/192/people",
+            image: "https://plataformaamais.atlassian.net/wiki/aa-avatar/5fe0dad844065f013f160051",
         },
         {
             name: "Vitor Duggen",
-            image: "https://placeimg.com/192/192/people",
+            image: "https://plataformaamais.atlassian.net/wiki/aa-avatar/61eafe2438041c0068809493",
         },
     ]);
 
-    function shuffleSquad() {
+    const showNames = ref(false);
+
+    function shuffleMembers() {
         squad.value = useShuffle(squad.value);
+    }
+
+    function looper(repetitions) {
+        var repetition = 1;
+
+        var interval = setInterval(() => {
+            shuffleMembers();
+            repetition === repetitions ? clearInterval(interval) : repetition++;
+        }, 200);
     }
 </script>
 
 <template>
     <div class="container mx-auto">
         <div class="h-screen flex flex-col items-center justify-center gap-16">
-            <!-- <ul>
-                <li
-                    class="text-center text-2xl"
-                    v-for="(member, key) in shuffledSquad"
-                    :key="key"
-                >
-                    {{ member }}
-                </li>
-            </ul> -->
-
             <TransitionGroup
                 tag="ul"
                 name="person"
@@ -131,14 +132,22 @@
                     :key="member.name"
                     :image="member.image"
                     :name="member.name"
+                    :show-name="showNames"
                 />
             </TransitionGroup>
 
             <button
                 class="btn"
-                @click="shuffleSquad"
+                @click="looper(5)"
             >
                 Randomizar
+            </button>
+
+            <button
+                class="btn"
+                @click="showNames = !showNames"
+            >
+                {{ showNames ? "Ocultar" : "Mostrar" }} nomes
             </button>
         </div>
     </div>
@@ -155,7 +164,7 @@
     .person-move,
     .person-enter-active,
     .person-leave-active {
-        transition: all 0.5s ease;
+        transition: all 0.2s ease;
     }
 
     .person-enter-from,
