@@ -90,10 +90,6 @@
             image: "https://plataformaamais.atlassian.net/wiki/aa-avatar/620a81c9eb29780068909ded",
         },
         {
-            name: "Pedro Gonçalves",
-            image: "https://plataformaamais.atlassian.net/wiki/aa-avatar/614224581238e8007133d470",
-        },
-        {
             name: "Thiago Tinoco",
             image: "https://plataformaamais.atlassian.net/wiki/aa-avatar/5fe0dad844065f013f160051",
         },
