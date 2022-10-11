@@ -12,26 +12,6 @@
         return squad[randomNumber];
     }
 
-    // function shuffle([...array]) {
-    //     let currentIndex = array.length;
-    //     let randomIndex;
-
-    //     while (currentIndex != 0) {
-    //         // Picks a remaining element.
-    //         randomIndex = Math.floor(Math.random() * currentIndex);
-    //         currentIndex--;
-
-    //         // Swaps it with the current element.
-    //         [array[currentIndex], array[randomIndex]] = [
-    //             array[randomIndex],
-    //             array[currentIndex],
-    //         ];
-    //     }
-
-    //     // Returns the new list
-    //     return array;
-    // }
-
     function daily(squad = [], conductorSelector, memberRandomizer) {
         // Selects a member to be the daily conductor
         const conductor = conductorSelector(squad);
@@ -75,7 +55,7 @@
     const squad = ref([
         {
             name: "Anderson Alfarth",
-            image: "https://plataformaamais.atlassian.net/wiki/aa-avatar/61714e83892c420072113a16   ",
+            image: "https://plataformaamais.atlassian.net/wiki/aa-avatar/61714e83892c420072113a16",
         },
         {
             name: "Bruno Rovela",
@@ -88,6 +68,10 @@
         {
             name: "Nicolas Gross",
             image: "https://plataformaamais.atlassian.net/wiki/aa-avatar/620a81c9eb29780068909ded",
+        },
+        {
+            name: "Pedro Gonçalves",
+            image: "https://plataformaamais.atlassian.net/wiki/aa-avatar/614224581238e8007133d470",
         },
         {
             name: "Thiago Tinoco",
@@ -111,7 +95,7 @@
         var interval = setInterval(() => {
             shuffleMembers();
             repetition === repetitions ? clearInterval(interval) : repetition++;
-        }, 200);
+        }, 100);
     }
 </script>
 
@@ -139,12 +123,12 @@
                 Randomizar
             </button>
 
-            <button
+            <!-- <button
                 class="btn"
                 @click="showNames = !showNames"
             >
                 {{ showNames ? "Ocultar" : "Mostrar" }} nomes
-            </button>
+            </button> -->
         </div>
     </div>
 </template>
@@ -160,7 +144,7 @@
     .person-move,
     .person-enter-active,
     .person-leave-active {
-        transition: all 0.2s ease;
+        transition: all 0.1s ease;
     }
 
     .person-enter-from,
